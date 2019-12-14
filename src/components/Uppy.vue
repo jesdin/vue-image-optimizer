@@ -1,0 +1,70 @@
+<template>
+  <div class="uppy">
+  <div id="uploader"></div>
+  </div>
+</template>
+
+<script lang="ts">
+import { Component, Prop, Vue } from "vue-property-decorator";
+
+import * as UppyUploader from "@uppy/core"
+import * as Dashboard from '@uppy/dashboard'
+import * as GoogleDrive from '@uppy/google-drive'
+import * as Dropbox from '@uppy/dropbox'
+import * as Instagram from '@uppy/instagram'
+// import * as Facebook from '@uppy/facebook'
+// import * as OneDrive from '@uppy/onedrive'
+import * as Webcam from '@uppy/webcam'
+import * as Tus from '@uppy/tus'
+
+@Component
+export default class Uppy extends Vue {
+  mounted() {
+    console.log('yolo')
+
+    const uppy = UppyUploader({
+      debug: true,
+      autoProceed: false,
+      restrictions: {
+        maxFileSize: 1000000,
+        maxNumberOfFiles: 3,
+        minNumberOfFiles: 2,
+        allowedFileTypes: ['image/*', 'video/*']
+      }
+    })
+    .use(Dashboard, {
+      trigger: '.UppyModalOpenerBtn',
+      inline: true,
+      target: '#uploader',
+      replaceTargetContent: true,
+      showProgressDetails: true,
+      note: 'Images and video only, 2–3 files, up to 1 MB',
+      height: 470,
+      metaFields: [
+        { id: 'name', name: 'Name', placeholder: 'file name' },
+        { id: 'caption', name: 'Caption', placeholder: 'describe what the image is about' }
+      ],
+      browserBackButtonClose: true
+    })
+    .use(GoogleDrive, { target: Dashboard, companionUrl: 'https://companion.uppy.io' })
+    .use(Dropbox, { target: Dashboard, companionUrl: 'https://companion.uppy.io' })
+    .use(Instagram, { target: Dashboard, companionUrl: 'https://companion.uppy.io' })
+    // .use(Facebook, { target: Dashboard, companionUrl: 'https://companion.uppy.io' })
+    // .use(OneDrive, { target: Dashboard, companionUrl: 'https://companion.uppy.io' })
+    .use(Webcam, { target: Dashboard })
+    .use(Tus, { endpoint: 'https://master.tus.io/files/' })
+
+    uppy.on('complete', result => {
+      console.log('successful files:', result.successful)
+      console.log('failed files:', result.failed)
+    })
+  }
+}
+</script>
+
+<!-- Add "scoped" attribute to limit CSS to this component only -->
+<style scoped lang="scss">
+  @import '~@uppy/core/dist/style.css';
+  @import '~@uppy/dashboard/dist/style.css';
+</style>
+

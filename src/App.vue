@@ -1,16 +1,16 @@
 <template>
   <div id="app">
-    <HelloWorld msg="Hello" />
+    <Uppy />
   </div>
 </template>
 
 <script lang="ts">
 import { Component, Vue } from "vue-property-decorator";
-import HelloWorld from "./components/HelloWorld.vue";
+import Uppy from "./components/Uppy.vue";
 
 @Component({
   components: {
-    HelloWorld
+    Uppy
   }
 })
 export default class App extends Vue {}
