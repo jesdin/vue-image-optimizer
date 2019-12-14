@@ -12,8 +12,6 @@ import * as Dashboard from '@uppy/dashboard'
 import * as GoogleDrive from '@uppy/google-drive'
 import * as Dropbox from '@uppy/dropbox'
 import * as Instagram from '@uppy/instagram'
-// import * as Facebook from '@uppy/facebook'
-// import * as OneDrive from '@uppy/onedrive'
 import * as Webcam from '@uppy/webcam'
 import * as Tus from '@uppy/tus'
 
@@ -27,9 +25,9 @@ export default class Uppy extends Vue {
       autoProceed: false,
       restrictions: {
         maxFileSize: 1000000,
-        maxNumberOfFiles: 3,
-        minNumberOfFiles: 2,
-        allowedFileTypes: ['image/*', 'video/*']
+        maxNumberOfFiles: 10,
+        minNumberOfFiles: 1,
+        allowedFileTypes: ['image/*']
       }
     })
     .use(Dashboard, {
@@ -38,7 +36,7 @@ export default class Uppy extends Vue {
       target: '#uploader',
       replaceTargetContent: true,
       showProgressDetails: true,
-      note: 'Images and video only, 2–3 files, up to 1 MB',
+      note: 'Images only, 1–10 files, up to 1 MB',
       height: 470,
       metaFields: [
         { id: 'name', name: 'Name', placeholder: 'file name' },
@@ -49,8 +47,6 @@ export default class Uppy extends Vue {
     .use(GoogleDrive, { target: Dashboard, companionUrl: 'https://companion.uppy.io' })
     .use(Dropbox, { target: Dashboard, companionUrl: 'https://companion.uppy.io' })
     .use(Instagram, { target: Dashboard, companionUrl: 'https://companion.uppy.io' })
-    // .use(Facebook, { target: Dashboard, companionUrl: 'https://companion.uppy.io' })
-    // .use(OneDrive, { target: Dashboard, companionUrl: 'https://companion.uppy.io' })
     .use(Webcam, { target: Dashboard })
     .use(Tus, { endpoint: 'https://master.tus.io/files/' })
 
