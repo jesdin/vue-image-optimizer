@@ -1,5 +1,6 @@
 <template>
   <div id="app">
+    <Header />
     <Uppy />
   </div>
 </template>
@@ -7,10 +8,12 @@
 <script lang="ts">
 import { Component, Vue } from "vue-property-decorator";
 import Uppy from "./components/Uppy.vue";
+import Header from "./components/Header.vue";
 
 @Component({
   components: {
-    Uppy
+    Uppy,
+    Header
   }
 })
 export default class App extends Vue {}
@@ -23,6 +26,6 @@ export default class App extends Vue {}
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
-  margin-top: 60px;
+  margin-top: 30px;
 }
 </style>

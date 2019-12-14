@@ -64,8 +64,8 @@ export default class Uppy extends Vue {
   @import '~@uppy/core/dist/style.css';
   @import '~@uppy/dashboard/dist/style.css';
   #uploader {
-    margin-left: 2%;
-    margin-right: 2%;  
+    margin-left: 20px;
+    margin-right: 20px;  
   }
 </style>
 
