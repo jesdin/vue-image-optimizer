@@ -38,6 +38,7 @@ export default class Uppy extends Vue {
       showProgressDetails: true,
       note: 'Images only, 1–10 files, up to 1 MB',
       height: 470,
+      width: document.documentElement.clientWidth,
       metaFields: [
         { id: 'name', name: 'Name', placeholder: 'file name' },
         { id: 'caption', name: 'Caption', placeholder: 'describe what the image is about' }
@@ -62,5 +63,9 @@ export default class Uppy extends Vue {
 <style scoped lang="scss">
   @import '~@uppy/core/dist/style.css';
   @import '~@uppy/dashboard/dist/style.css';
+  #uploader {
+    margin-left: 2%;
+    margin-right: 2%;  
+  }
 </style>
 
