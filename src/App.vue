@@ -2,7 +2,7 @@
   <div id="app">
     <Header />
     <Uppy />
-    <Details />
+    <Details v-on:optimization-requested="onOptimizationRequested" />
   </div>
 </template>
 
@@ -11,7 +11,7 @@ import { Component, Vue } from "vue-property-decorator";
 import Uppy from "./components/Uppy.vue";
 import Header from "./components/Header.vue";
 import Details from "./components/Details.vue";
-
+import { OptimizationRequestedEvent } from './events/OptimizationRequestedEvent'
 
 @Component({
   components: {
@@ -20,7 +20,12 @@ import Details from "./components/Details.vue";
     Details
   }
 })
-export default class App extends Vue {}
+export default class App extends Vue {
+  onOptimizationRequested(e: OptimizationRequestedEvent)
+  {
+    console.log(e)
+  }
+}
 </script> 
 
 <style lang="scss">

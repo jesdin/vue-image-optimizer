@@ -44,7 +44,6 @@ export default class Details extends Vue {
       quality: this.quality,
       shouldMaintainAspectRatio: this.shouldMaintainAspectRatio
     }
-    console.log(event);
     this.$emit('optimization-requested', event)
   }
 }
