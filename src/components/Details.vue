@@ -27,6 +27,7 @@
 <script lang="ts">
 import { Component, Vue } from "vue-property-decorator";
 import { mapState, mapMutations, mapActions } from 'vuex'
+import { OptimizationRequestedEvent } from '../events/OptimizationRequestedEvent'
 
 @Component
 export default class Details extends Vue {
@@ -36,24 +37,15 @@ export default class Details extends Vue {
   quality: number = 100
   shouldMaintainAspectRatio: boolean = false
 
-  public get Width() {
-    return this.width
-  }
-
-  public get Height() {
-    return this.height
-  }
-
-  public get Quality() {
-    return this.quality
-  }
-
-  public get MaintainAspectRatio() {
-    return this.shouldMaintainAspectRatio
-  }
-
   setOptimizeDetails() {
-    console.log(this);
+    var event: OptimizationRequestedEvent = {
+      width: this.width,
+      height: this.height,
+      quality: this.quality,
+      shouldMaintainAspectRatio: this.shouldMaintainAspectRatio
+    }
+    console.log(event);
+    this.$emit('optimization-requested', event)
   }
 }
 </script>
