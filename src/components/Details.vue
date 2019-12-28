@@ -1,25 +1,59 @@
 <template>
-  <div>
-    <label>Height:</label>
-    <input type="number" />
-    <label style="margin-left:3em;">Width:</label>
-    <input type="number" />
-    <br />
-    <input type="checkbox" />
-    <label>Maintain Aspect Ratio</label>
-    <br />
+  <form>
+    <label>
+      Height
+      <input type="number" min='0' v-model="height" />
+    </label>
+
+    <label>
+      Width
+      <input type="number" min='0'  v-model="width" />
+    </label>
+    
+    <label>
+      <input type="checkbox" v-model="shouldMaintainAspectRatio" />
+      Maintain Aspect Ratio
+    </label>
+
+    <label>
+      Quality
+      <input type="number" min='0' max="100" v-model="quality" />
+    </label>
+
     <input type="button" value="Optimize" v-on:click="setOptimizeDetails" />
-  </div>
+  </form>
 </template>
 
 <script lang="ts">
-import { Component, Prop, Vue } from "vue-property-decorator";
+import { Component, Vue } from "vue-property-decorator";
 import { mapState, mapMutations, mapActions } from 'vuex'
 
 @Component
 export default class Details extends Vue {
+
+  width: number = 0
+  height: number = 0
+  quality: number = 100
+  shouldMaintainAspectRatio: boolean = false
+
+  public get Width() {
+    return this.width
+  }
+
+  public get Height() {
+    return this.height
+  }
+
+  public get Quality() {
+    return this.quality
+  }
+
+  public get MaintainAspectRatio() {
+    return this.shouldMaintainAspectRatio
+  }
+
   setOptimizeDetails() {
-    console.log("Hi");
+    console.log(this);
   }
 }
 </script>
@@ -32,11 +66,12 @@ div {
   margin-top: 20px;
 }
 input[type="number"] {
-  width: 70px;
+  margin-left: 5px;
 }
-input,
+
 label {
   margin-bottom: 7px;
+  display: block;
 }
 input[type="button"] {
   padding: 5px;
