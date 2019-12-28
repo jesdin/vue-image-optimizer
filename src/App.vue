@@ -2,6 +2,7 @@
   <div id="app">
     <Header />
     <Uppy />
+    <Details />
   </div>
 </template>
 
@@ -9,15 +10,18 @@
 import { Component, Vue } from "vue-property-decorator";
 import Uppy from "./components/Uppy.vue";
 import Header from "./components/Header.vue";
+import Details from "./components/Details.vue";
+
 
 @Component({
   components: {
     Uppy,
-    Header
+    Header,
+    Details
   }
 })
 export default class App extends Vue {}
-</script>
+</script> 
 
 <style lang="scss">
 #app {
