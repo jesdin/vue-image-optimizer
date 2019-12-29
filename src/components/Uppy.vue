@@ -7,7 +7,7 @@
 <script lang="ts">
 import { Component, Prop, Vue } from "vue-property-decorator";
 
-import { Uppy as UppyUploader } from "@uppy/core";
+import { Uppy as UppyUploader, UppyFile } from "@uppy/core";
 import Dashboard from '@uppy/dashboard'
 import GoogleDrive from '@uppy/google-drive'
 import Dropbox from '@uppy/dropbox'
@@ -20,6 +20,13 @@ export default class Uppy extends Vue {
 
   private uppy?: UppyUploader
   
+  public getFiles() {
+    if(this.uppy) {
+      return this.uppy.getFiles()
+    }
+    return []
+  }
+
   mounted() {
     this.uppy = new UppyUploader({
       debug: true,

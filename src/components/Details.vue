@@ -1,15 +1,15 @@
 <template>
   <form>
-    <Uppy />
+    <Uppy ref="uppy" />
 
     <label>
       Height
-      <input type="number" min='0' v-model.number="height" />
+      <input type="number" min="0" v-model.number="height" />
     </label>
 
     <label>
       Width
-      <input type="number" min='0' v-model.number="width" />
+      <input type="number" min="0" v-model.number="width" />
     </label>
     
     <label>
@@ -19,7 +19,7 @@
 
     <label>
       Quality
-      <input type="number" min='0' max="100" v-model.number="quality" />
+      <input type="number" min="0" max="100" v-model.number="quality" />
     </label>
 
     <input type="button" value="Optimize" v-on:click="setOptimizeDetails" />
@@ -49,7 +49,7 @@ export default class Details extends Vue {
       height: this.height,
       quality: this.quality,
       shouldMaintainAspectRatio: this.shouldMaintainAspectRatio,
-      files: uppy.getFiles()
+      files: this.$refs.uppy.getFiles()
     }
     console.log(event)
     this.$emit('optimization-requested', event)
