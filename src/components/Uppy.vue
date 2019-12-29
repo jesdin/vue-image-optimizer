@@ -17,12 +17,11 @@ import * as Tus from '@uppy/tus'
 
 @Component
 export default class Uppy extends Vue {
+  
   mounted() {
-    console.log('yolo')
-
     const uppy = UppyUploader({
       debug: true,
-      autoProceed: false,
+      autoProceed: true,
       restrictions: {
         maxFileSize: 1000000,
         maxNumberOfFiles: 10,
@@ -55,6 +54,8 @@ export default class Uppy extends Vue {
       console.log('successful files:', result.successful)
       console.log('failed files:', result.failed)
     })
+
+    this.up = uppy;
   }
 }
 </script>

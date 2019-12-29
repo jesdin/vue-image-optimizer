@@ -3,4 +3,5 @@ export interface OptimizationRequestedEvent {
     height: number
     quality: number
     shouldMaintainAspectRatio: boolean
+    files: Array<any>
 }

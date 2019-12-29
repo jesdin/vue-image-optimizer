@@ -1,5 +1,7 @@
 <template>
   <form>
+    <Uppy />
+
     <label>
       Height
       <input type="number" min='0' v-model.number="height" />
@@ -26,10 +28,14 @@
 
 <script lang="ts">
 import { Component, Vue } from "vue-property-decorator";
-import { mapState, mapMutations, mapActions } from 'vuex'
+import Uppy from "./Uppy.vue";
 import { OptimizationRequestedEvent } from '../events/OptimizationRequestedEvent'
 
-@Component
+@Component({
+  components:{
+    Uppy
+  }
+})
 export default class Details extends Vue {
 
   width: number = 0
@@ -42,8 +48,10 @@ export default class Details extends Vue {
       width: this.width,
       height: this.height,
       quality: this.quality,
-      shouldMaintainAspectRatio: this.shouldMaintainAspectRatio
+      shouldMaintainAspectRatio: this.shouldMaintainAspectRatio,
+      files: uppy.getFiles()
     }
+    console.log(event)
     this.$emit('optimization-requested', event)
   }
 }
