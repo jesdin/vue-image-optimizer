@@ -7,19 +7,21 @@
 <script lang="ts">
 import { Component, Prop, Vue } from "vue-property-decorator";
 
-import * as UppyUploader from "@uppy/core"
-import * as Dashboard from '@uppy/dashboard'
-import * as GoogleDrive from '@uppy/google-drive'
-import * as Dropbox from '@uppy/dropbox'
-import * as Instagram from '@uppy/instagram'
-import * as Webcam from '@uppy/webcam'
-import * as Tus from '@uppy/tus'
+import { Uppy as UppyUploader } from "@uppy/core";
+import Dashboard from '@uppy/dashboard'
+import GoogleDrive from '@uppy/google-drive'
+import Dropbox from '@uppy/dropbox'
+import Instagram from '@uppy/instagram'
+import Webcam from '@uppy/webcam'
+import Tus from '@uppy/tus'
 
 @Component
 export default class Uppy extends Vue {
+
+  private uppy?: UppyUploader
   
   mounted() {
-    const uppy = UppyUploader({
+    this.uppy = new UppyUploader({
       debug: true,
       autoProceed: true,
       restrictions: {
@@ -50,12 +52,10 @@ export default class Uppy extends Vue {
     .use(Webcam, { target: Dashboard })
     .use(Tus, { endpoint: 'https://master.tus.io/files/' })
 
-    uppy.on('complete', result => {
+    this.uppy.on('complete', result => {
       console.log('successful files:', result.successful)
       console.log('failed files:', result.failed)
     })
-
-    this.up = uppy;
   }
 }
 </script>
