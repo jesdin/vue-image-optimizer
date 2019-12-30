@@ -71,6 +71,8 @@ export default class Uppy extends Vue {
 <style scoped lang="scss">
   @import '~@uppy/core/dist/style.css';
   @import '~@uppy/dashboard/dist/style.css';
+  @import '~@uppy/webcam/dist/style.css';
+
   #uploader {
     margin-left: 20px;
     margin-right: 20px;  
