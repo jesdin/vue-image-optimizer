@@ -10,6 +10,7 @@ import { Component, Vue } from "vue-property-decorator";
 import Header from "./components/Header.vue";
 import Details from "./components/Details.vue";
 import { OptimizationRequestedEvent } from './events/OptimizationRequestedEvent'
+import { Optimizer } from './services/Optimizer'
 
 @Component({
   components: {
@@ -20,7 +21,17 @@ import { OptimizationRequestedEvent } from './events/OptimizationRequestedEvent'
 export default class App extends Vue {
   onOptimizationRequested(e: OptimizationRequestedEvent)
   {
-    console.log(e)
+    var files = e.files
+    files.forEach(function(file) {
+      Optimizer.compressFile(file.data, e.quality/100, e.width, e.height, e.shouldMaintainAspectRatio)
+        .then(blob => {
+          file.data = blob
+          console.log(blob)
+        })
+        .catch(err => {
+          console.error(err)
+        })
+    })
   }
 }
 </script> 
