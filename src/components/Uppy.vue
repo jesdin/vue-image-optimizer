@@ -60,8 +60,8 @@ export default class Uppy extends Vue {
     .use(Tus, { endpoint: 'https://master.tus.io/files/' })
 
     this.uppy.on('complete', result => {
-      console.log('successful files:', result.successful)
-      console.log('failed files:', result.failed)
+      // console.log('successful files:', result.successful)
+      // console.log('failed files:', result.failed)
     })
   }
 }

@@ -51,7 +51,7 @@ export default class Details extends Vue {
       files: (this.$refs.uppy as Uppy).getFiles()
     };
 
-    console.log(event)
+    // console.log(event)
     this.$emit("optimization-requested", event)
   }
 }
