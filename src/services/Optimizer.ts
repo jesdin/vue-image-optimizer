@@ -12,7 +12,7 @@ export class Optimizer {
                     return resolve(result)
                 },
                 error(err) {
-                    console.log(err.message);
+                    // console.log(err.message);
                     return reject(err)
                 },
             });
