@@ -22,7 +22,7 @@
       <input type="number" min="0" max="100" v-model.number="quality" />
     </label>
 
-    <input type="button" value="Optimize" v-on:click="setOptimizeDetails" />
+    <input type="button" value="Optimize and Download" v-on:click="setOptimizeDetails" />
   </form>
 </template>
 

@@ -18,7 +18,13 @@ import { Optimizer } from "./services/Optimizer"
     Details
   }
 })
+
 export default class App extends Vue {
+  alertDisplay(text:any) {
+    // $swal function calls SweetAlert into the application with the specified configuration.
+    this.$swal(text);
+  }
+
   onOptimizationRequested(e: OptimizationRequestedEvent)
   {
     var files = e.files
@@ -31,20 +37,19 @@ export default class App extends Vue {
       )
       .then(blob => {
         file.data = blob;
-        console.log(blob);
+        // console.log(blob);
         downloadBlobAsFile(blob);
       })
       .catch(err => {
-        console.error(err);
+        // console.error(err);
+        alertMessage(err);
       });
     });
 
+    const alertMessage = this.alertDisplay;
+
     const downloadBlobAsFile = function(data:Blob){
 				const contentType = 'application/octet-stream';
-        if(!data) {
-            console.error(' No data')
-            return;
-        }
 
         var filename = 'compressed.png'
 
