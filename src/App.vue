@@ -9,8 +9,8 @@
 import { Component, Vue } from "vue-property-decorator";
 import Header from "./components/Header.vue";
 import Details from "./components/Details.vue";
-import { OptimizationRequestedEvent } from './events/OptimizationRequestedEvent'
-import { Optimizer } from './services/Optimizer'
+import { OptimizationRequestedEvent } from "./events/OptimizationRequestedEvent"
+import { Optimizer } from "./services/Optimizer"
 
 @Component({
   components: {
@@ -23,15 +23,41 @@ export default class App extends Vue {
   {
     var files = e.files
     files.forEach(function(file) {
-      Optimizer.compressFile(file.data, e.quality/100, e.width, e.height, e.shouldMaintainAspectRatio)
-        .then(blob => {
-          file.data = blob
-          console.log(blob)
-        })
-        .catch(err => {
-          console.error(err)
-        })
-    })
+      Optimizer.compressFile(
+        file.data,
+        e.quality/100,
+        e.width, e.height,
+        e.shouldMaintainAspectRatio
+      )
+      .then(blob => {
+        file.data = blob;
+        console.log(blob);
+        downloadBlobAsFile(blob);
+      })
+      .catch(err => {
+        console.error(err);
+      });
+    });
+
+    const downloadBlobAsFile = function(data:Blob){
+				const contentType = 'application/octet-stream';
+        if(!data) {
+            console.error(' No data')
+            return;
+        }
+
+        var filename = 'compressed.png'
+
+        var blob = new Blob([data], {type: contentType}),
+            e    = document.createEvent('MouseEvents'),
+            a    = document.createElement('a')
+
+        a.download = filename
+        a.href = window.URL.createObjectURL(blob)
+        a.dataset.downloadurl =  [contentType, a.download, a.href].join(':')
+        e.initMouseEvent('click', true, false, window, 0, 0, 0, 0, 0, false, false, false, false, 0, null)
+        a.dispatchEvent(e)
+    }
   }
 }
 </script> 

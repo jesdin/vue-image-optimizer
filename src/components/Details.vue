@@ -29,19 +29,18 @@
 <script lang="ts">
 import { Component, Vue } from "vue-property-decorator";
 import Uppy from "./Uppy.vue";
-import { OptimizationRequestedEvent } from '../events/OptimizationRequestedEvent'
+import { OptimizationRequestedEvent } from "../events/OptimizationRequestedEvent"
 
 @Component({
-  components:{
+  components: {
     Uppy
   }
 })
 export default class Details extends Vue {
-
-  width: number = 0
-  height: number = 0
-  quality: number = 100
-  shouldMaintainAspectRatio: boolean = false
+  width: number = 0;
+  height: number = 0;
+  quality: number = 100;
+  shouldMaintainAspectRatio: boolean = false;
 
   setOptimizeDetails() {
     var event: OptimizationRequestedEvent = {
@@ -49,10 +48,11 @@ export default class Details extends Vue {
       height: this.height,
       quality: this.quality,
       shouldMaintainAspectRatio: this.shouldMaintainAspectRatio,
-      files: this.$refs.uppy.getFiles()
-    }
+      files: (this.$refs.uppy as Uppy).getFiles()
+    };
+
     console.log(event)
-    this.$emit('optimization-requested', event)
+    this.$emit("optimization-requested", event)
   }
 }
 </script>

@@ -1,7 +1,7 @@
 <template>
   <nav class="header">
     <img src="../assets/IO.png" width="21" height="21" id="logo" /> &nbsp;
-    <h1> Image Optimizer</h1>
+    <h1>Image Optimizer</h1>
   </nav>
 </template>
 
@@ -14,12 +14,12 @@ export default class Header extends Vue {}
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped lang="scss">
-@import url('https://fonts.googleapis.com/css?family=Roboto+Slab&display=swap');
+@import url("https://fonts.googleapis.com/css?family=Roboto+Slab&display=swap");
 h1 {
   display: inline-block;
-  font-family: 'Roboto Slab', serif;
+  font-family: "Roboto Slab", serif;
 }
-nav{
+nav {
   text-align: left;
 }
 img {
